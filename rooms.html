@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>King Resort Rooms</title>
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" />
+  <style>
+    body {
+      background-color: whitesmoke;
+      color: black;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+
+    .nav__links a {
+      color: white;
+    }
+
+    .nav__btn, .btn {
+      background-color: #ffd700;
+      color: #000;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .nav__btn:hover, .btn:hover {
+      background-color: #e6c200;
+    }
+
+    .section__container {
+      padding: 4rem 1rem;
+      text-align: center;
+    }
+
+    .room__grid {
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      margin-top: 2rem;
+    }
+
+    .room__card {
+      background-color: #111;
+      border: 1px solid #ffd700;
+      border-radius: 12px;
+      overflow: hidden;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.3s ease;
+    }
+
+    .room__card:hover {
+      transform: translateY(-6px);
+    }
+
+    .room__image {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+    }
+
+    .room__details {
+      padding: 1.5rem;
+    }
+
+    .room__details h2, .room__details p {
+      color: white;
+    }
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #f1f1f1;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav>
+      <div class="nav__bar">
+        <div class="logo">
+          <a href="index.html"><img src="/Images/kings logo.png" alt="King Resort Logo" /></a>
+        </div>
+        <div class="nav__menu__btn" id="menu-btn">
+          <i class="ri-menu-line"></i>
+        </div>
+      </div>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="rooms.html" class="active">Rooms</a></li>
+        <li><a href="explore.html">Explore</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="section__container rooms__page">
+    <h1 class="section__header">Our Signature Rooms</h1>
+    <p class="section__description center">
+      Each room is uniquely designed to provide comfort, luxury, and a stunning view. Choose your perfect stay below.
+    </p>
+
+    <div class="room__grid">
+
+      <div class="room__card">
+        <img src="/Images/room-1.jpg" alt="Deluxe Ocean View" class="room__image" />
+        <div class="room__details">
+          <h2>Deluxe Ocean View</h2>
+          <p>Enjoy breathtaking views of the ocean from your private balcony. This spacious room offers elegance and serenity with top-notch amenities.</p>
+          <p><strong>From $299/night</strong></p>
+          <button class="btn" onclick="window.location.href='index.html#booking'">Book Now</button>
+        </div>
+      </div>
+
+      <div class="room__card">
+        <img src="/Images/room-2.jpg" alt="Executive Cityscape" class="room__image" />
+        <div class="room__details">
+          <h2>Executive Cityscape Room</h2>
+          <p>Perfect for business travelers or city lovers, this room combines modern luxury with panoramic city views, offering style and sophistication.</p>
+          <p><strong>From $199/night</strong></p>
+          <button class="btn" onclick="window.location.href='index.html#booking'">Book Now</button>
+        </div>
+      </div>
+
+      <div class="room__card">
+        <img src="/Images/room-3.jpg" alt="Family Garden Retreat" class="room__image" />
+        <div class="room__details">
+          <h2>Family Garden Retreat</h2>
+          <p>Designed for families, this room opens into a lush private garden. Spacious, quiet, and warm — ideal for creating cherished memories together.</p>
+          <p><strong>From $249/night</strong></p>
+          <button class="btn" onclick="window.location.href='index.html#booking'">Book Now</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 King Resort. All rights reserved.</p>
+  </footer>
+</body>
+</html> -->

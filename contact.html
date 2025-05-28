@@ -1,0 +1,348 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>King Resort Contact Us</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css" media="(prefers-color-scheme: dark)" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+
+  <header class="header">
+    <nav>
+      <div class="nav__bar">
+        <div class="logo">
+          <a href="#"><img src="/Images/kings logo.png" alt="logo" /></a>
+        </div>
+        <div class="nav__menu__btn" id="menu-btn">
+          <i class="ri-menu-line"></i>
+        </div>
+      </div>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="explore.html">Explore</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="contact" class="contact section">
+      <div class="container section-title">
+        <h2>Contact</h2>
+        <p>Have any inquiries? Reach out to us directly through the form or visit us at our address.</p>
+      </div>
+
+      <div class="container contact-content">
+        <div class="row">
+          <div class="col-lg-5">
+            <div class="info-wrap">
+              <div class="info-item">
+                <i class="ri-map-pin-2-line"></i>
+                <div>
+                  <h3>Address</h3>
+                  <p>A108 Adam Street, New York, NY 535022</p>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <i class="ri-phone-line"></i>
+                <div>
+                  <h3>Call Us</h3>
+                  <p>+254718845348 0r +254739833506</p>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <i class="ri-mail-line"></i>
+                <div>
+                  <h3>Email Us</h3>
+                  <p>barnabasmunuhe@gmail.com.com</p>
+                </div>
+              </div>
+
+              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus" 
+                style="border:0; width: 100%; height: 270px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            </div>
+          </div>
+
+          <div class="col-lg-7">
+            <form id="contact-form" class="php-email-form">
+              <div class="row gy-4">
+                <div class="col-md-6">
+                  <label for="name-field">Your Name</label>
+                  <input type="text" name="name" id="name-field" class="form-control" required />
+                </div>
+
+                <div class="col-md-6">
+                  <label for="email-field">Your Email</label>
+                  <input type="email" name="email" id="email-field" class="form-control" required />
+                </div>
+
+                <div class="col-md-12">
+                  <label for="subject-field">Subject</label>
+                  <input type="text" name="subject" id="subject-field" class="form-control" required />
+                </div>
+
+                <div class="col-md-12">
+                  <label for="message-field">Message</label>
+                  <textarea name="message" id="message-field" rows="10" class="form-control" required></textarea>
+                </div>
+
+                <div class="col-md-12 text-center">
+                  <div class="loading">Loading...</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Your message has been sent. Thank you!</div>
+                  <button type="submit" class="btn">Send Message</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Kings Resort. All rights reserved.</p>
+  </footer>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.querySelector(".php-email-form");
+    const loading = document.querySelector(".loading");
+    const errorMessage = document.querySelector(".error-message");
+    const sentMessage = document.querySelector(".sent-message");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // Show loading indicator
+      loading.style.display = "block";
+      errorMessage.style.display = "none";
+      sentMessage.style.display = "none";
+
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      try {
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        const result = await res.json();
+
+        loading.style.display = "none";
+
+        if (res.ok && result.success) {
+          sentMessage.style.display = "block";
+          form.reset();
+        } else {
+          errorMessage.textContent = result.error || "An error occurred. Try again.";
+          errorMessage.style.display = "block";
+        }
+      } catch (err) {
+        console.error("Form submission failed:", err);
+        loading.style.display = "none";
+        errorMessage.textContent = "Network error. Please try again later.";
+        errorMessage.style.display = "block";
+      }
+    });
+  });
+</script>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | King Resort</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" />
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f9f9f9;
+      color: #222;
+    }
+
+    .contact__container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .contact__info, .contact__form {
+      background-color: black;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px gold;
+      color: #f1f1f1;
+    }
+
+    .contact__info h2, .contact__form h2 {
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+      color: gold;
+    }
+
+    .info__item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .info__item i {
+      font-size: 1.5rem;
+      color: goldenrod;
+    }
+
+    .contact__form form {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .contact__form input,
+    .contact__form textarea {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    .contact__form input:focus,
+    .contact__form textarea:focus {
+      border-color: gold;
+      outline: none;
+    }
+
+    .contact__form button {
+      background-color: rgb(224, 192, 9);
+      color: white;
+      padding: 0.75rem;
+      font-size: 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .contact__form button:hover {
+      background-color: rgb(237, 188, 64);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #f1f1f1;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <nav>
+      <div class="nav__bar">
+        <div class="logo">
+          <a href="index.html"><img src="/Images/kings logo.png" alt="King Resort Logo" /></a>
+        </div>
+      </div>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="rooms.html" class="active">Rooms</a></li>
+        <li><a href="explore.html">Explore</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="contact__container">
+    <div class="contact__info">
+      <h2>Contact Information</h2>
+      <div class="info__item">
+        <i class="ri-map-pin-line"></i>
+        <span>A108 Royal Street, Paradise Island</span>
+      </div>
+      <div class="info__item">
+        <i class="ri-phone-line"></i>
+        <span>+54718845348</span>
+      </div>
+      <div class="info__item">
+        <i class="ri-mail-line"></i>
+        <span>contact@kingresort.com</span>
+      </div>
+      <div class="info__item">
+        <i class="ri-time-line"></i>
+        <span>Open 24/7</span>
+      </div>
+    </div>
+
+    <div class="contact__form">
+      <h2>Send Us a Message</h2>
+      <form id="contactForm">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="email" name="email" placeholder="Your Email" required />
+        <input type="text" name="subject" placeholder="Subject" required />
+        <textarea name="message" rows="6" placeholder="Your Message" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 King Resort. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Example basic client-side handler
+    document.getElementById("contactForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      try {
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+
+        if (res.ok) {
+          alert("✅ Message sent successfully!");
+          form.reset();
+        } else {
+          alert("❌ Failed to send message. Try again later.");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("⚠️ Network error. Please try again.");
+      }
+    });
+  </script>
+
+</body>
+</html>

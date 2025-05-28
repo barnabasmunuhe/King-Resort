@@ -1,0 +1,417 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>More About King Resort</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="header">
+    <nav>
+      <div class="nav__bar">
+        <div class="logo">
+          <a href="#"><img src="/Images/kings logo.png" alt="logo" /></a>
+        </div>
+        <div class="nav__menu__btn" id="menu-btn">
+          <i class="ri-menu-line"></i>
+        </div>
+      </div>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="explore.html">Explore</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="section__container about-more">
+    <h1>Welcome to the Heart of King Resort</h1>
+    <p>
+      Nestled in a tropical paradise, King Resort is more than a destination — it's a luxurious sanctuary. 
+      Our mission is to blend comfort, class, and cultural charm. With lush gardens, panoramic views, 
+      and personalized service, we provide the perfect setting for relaxation or celebration.
+    </p>
+    <p>
+      From the elegant rooms to gourmet dining, world-class spa, and curated activities, every moment at 
+      King Resort is designed to make you feel like royalty. Our resort is not just a getaway — it's an experience.
+    </p>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Kings Resort. All rights reserved.</p>
+  </footer>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>More About King Resort</title>
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    /* Additional styles for the about page */
+    .about-more {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+      line-height: 1.8;
+    }
+
+    .about-more h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #2c3e50;
+      margin-bottom: 2rem;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+
+    .intro-text {
+      text-align: center;
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 3rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .gallery-section {
+      margin: 4rem 0;
+    }
+
+    .gallery-title {
+      text-align: center;
+      font-size: 2rem;
+      color: #2c3e50;
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+
+    .image-gallery {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 250px 250px;
+      gap: 1rem;
+      margin-bottom: 3rem;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(45deg, #f4f4f4, #e8e8e8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: #666;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .gallery-item::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.4);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .gallery-item:hover::before {
+      opacity: 1;
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      z-index: 2;
+    }
+
+    .gallery-item.main {
+      grid-row: 1 / 3;
+      background-image: url('/Images/garden-terrace-hotel-nairobi-1920x1080.webp');
+      color: white;
+      font-size: 1.3rem;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .gallery-item.secondary {
+      background-image: url('/Images/LuxurySuite.jpg');
+      color: white;
+    }
+
+    .gallery-item.tertiary {
+      background-image: url('/Images/fineDining.jpg');
+      color: white;
+    }
+
+    .gallery-item.quaternary {
+      background-image: url('/Images/Pool.jpg');
+      color: white;
+    }
+
+    .gallery-item.quinary {
+      background-image: url('/Images/spa\ and\ wellness.jpg');
+      color: white;
+    }
+
+    .gallery-placeholder {
+      text-align: center;
+      padding: 1rem;
+      position: relative;
+      z-index: 2;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 10px;
+      backdrop-filter: blur(5px);
+    }
+
+    .features-section {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 4rem 0;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #667eea;
+    }
+
+    .feature-card h3 {
+      font-size: 1.3rem;
+      color: #2c3e50;
+      margin-bottom: 1rem;
+      font-weight: 300;
+    }
+
+    .feature-card p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .cta-section {
+      background: linear-gradient(135deg, gold 0%, black 100%);
+      color: white;
+      padding: 3rem 2rem;
+      border-radius: 15px;
+      text-align: center;
+      margin: 4rem 0;
+    }
+
+    .cta-section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      font-weight: 300;
+    }
+
+    .cta-section p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: white;
+      color: goldenrod;
+      padding: 1rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255,255,255,0.3);
+    }
+
+
+
+    /* Responsive design */
+    @media (max-width: 768px) {
+      .about-more {
+        padding: 2rem 1rem;
+      }
+
+      .about-more h1 {
+        font-size: 2rem;
+      }
+
+      .image-gallery {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(5, 200px);
+      }
+
+      .gallery-item.main {
+        grid-row: 1;
+      }
+
+      .features-section {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-section {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav>
+      <div class="nav__bar">
+        <div class="logo">
+          <a href="#"><img src="/Images/kings logo.png" alt="logo" /></a>
+        </div>
+        <div class="nav__menu__btn" id="menu-btn">
+          <i class="ri-menu-line"></i>
+        </div>
+      </div>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="rooms.html" class="active">Rooms</a></li>
+        <li><a href="explore.html">Explore</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="section__container about-more">
+    <h1>Welcome to the Heart of King Resort</h1>
+    
+    <div class="intro-text">
+      <p>
+        Nestled in a tropical paradise, King Resort is more than a destination — it's a luxurious sanctuary. 
+        Our mission is to blend comfort, class, and cultural charm. With lush gardens, panoramic views, 
+        and personalized service, we provide the perfect setting for relaxation or celebration.
+      </p>
+      <p>
+        From the elegant rooms to gourmet dining, world-class spa, and curated activities, every moment at 
+        King Resort is designed to make you feel like royalty. Our resort is not just a getaway — it's an experience.
+      </p>
+    </div>
+
+    <section class="gallery-section">
+      <h2 class="gallery-title">Experience Our Paradise</h2>
+      <div class="image-gallery">
+        <div class="gallery-item main">
+          <div class="gallery-placeholder">
+            <div>🏖️</div>
+            <h3>Resort Overview</h3>
+            <p>Breathtaking aerial view of our tropical paradise with pristine beaches and luxurious accommodations</p>
+          </div>
+        </div>
+        <div class="gallery-item secondary">
+          <div class="gallery-placeholder">
+            <div>🏨</div>
+            <div>Luxury Suites</div>
+          </div>
+        </div>
+        <div class="gallery-item tertiary">
+          <div class="gallery-placeholder">
+            <div>🍽️</div>
+            <div>Fine Dining</div>
+          </div>
+        </div>
+        <div class="gallery-item quaternary">
+          <div class="gallery-placeholder">
+            <div>🏊‍♂️</div>
+            <div>Infinity Pool</div>
+          </div>
+        </div>
+        <div class="gallery-item quinary">
+          <div class="gallery-placeholder">
+            <div>🌺</div>
+            <div>Spa & Wellness</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="features-section">
+      <div class="feature-card">
+        <div class="feature-icon">👑</div>
+        <h3>Royal Treatment</h3>
+        <p>Experience unparalleled luxury with our personalized concierge services, ensuring every detail of your stay exceeds expectations.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🌴</div>
+        <h3>Tropical Paradise</h3>
+        <p>Immerse yourself in our lush tropical gardens and pristine beachfront, where natural beauty meets sophisticated design.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🍾</div>
+        <h3>Gourmet Excellence</h3>
+        <p>Savor world-class cuisine prepared by renowned chefs, featuring fresh local ingredients and international flavors.</p>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <h2>Ready to Experience Luxury?</h2>
+      <p>Book your unforgettable stay at King Resort and discover what it means to live like royalty.</p>
+      <a href="contact.html" class="cta-button">Reserve Your Stay</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Kings Resort. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Simple hover effects and interactions
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', function() {
+        this.style.transform = 'scale(1.1)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 300);
+      });
+    });
+
+    // Mobile menu functionality (if needed)
+    const menuBtn = document.getElementById('menu-btn');
+    const navLinks = document.getElementById('nav-links');
+    
+    if (menuBtn && navLinks) {
+      menuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+      });
+    }
+  </script>
+</body>
+</html>

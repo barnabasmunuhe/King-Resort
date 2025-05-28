@@ -1,0 +1,610 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css" media="(prefers-color-scheme: dark)" />
+<link rel="stylesheet" href="/style.css" />
+<script defer src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <title>King Resort Services</title>
+</head>
+<body>
+  <header class="header">
+    <nav>
+      <div class="nav__bar">
+        <div class="logo">
+          <a href="#"><img src="/Images/kings logo.png" alt="logo" /></a>
+        </div>
+        <div class="nav__menu__btn" id="menu-btn">
+          <i class="ri-menu-line"></i>
+        </div>
+      </div>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="explore.html">Explore</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <section class="service" id="service">
+      <div class="section__container service__container">
+        <div class="service__content">
+          <p class="section__subheader">SERVICES</p>
+          <h2 class="section__header">Strive Only For The Best.</h2>
+          <ul class="service__list">
+            <li>
+              <span><i class="ri-shield-star-line"></i></span>
+              High Class Security
+            </li>
+            <li>
+              <span><i class="ri-24-hours-line"></i></span>
+              24 Hours Room Service
+            </li>
+            <li>
+              <span><i class="ri-headphone-line"></i></span>
+              Conference Room
+            </li>
+            <li>
+              <span><i class="ri-map-2-line"></i></span>
+              Tourist Guide Support
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="section__container banner__container">
+      <div class="banner__content">
+        <div class="banner__card">
+          <h4>25+</h4>
+          <p>Properties Available</p>
+        </div>
+        <div class="banner__card">
+          <h4>350+</h4>
+          <p>Bookings Completed</p>
+        </div>
+        <div class="banner__card">
+          <h4>600+</h4>
+          <p>Happy Customers</p>
+        </div>
+      </div>
+    </section>
+</header>
+  <footer>
+    <p>&copy; 2025 Kings Resort. All rights reserved.</p>
+  </footer>
+</body>    -->
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services - King Resort</title>
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    /* Services Page Styles */
+    .services-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .services-hero {
+      text-align: center;
+      margin-bottom: 5rem;
+      padding: 3rem 0;
+      background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+      color: #d4af37;
+      border-radius: 15px;
+      position: relative;
+      overflow: hidden;
+      border: 2px solid #d4af37;
+    }
+
+    .services-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('/Images/services-hero.jpg') center/cover;
+      opacity: 0.3;
+      z-index: 1;
+    }
+
+    .services-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .services-hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: 300;
+      letter-spacing: 2px;
+    }
+
+    .services-hero p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 3rem;
+      margin-bottom: 5rem;
+    }
+
+    .service-card {
+      background: linear-gradient(145deg, #000000 0%, #1a1a1a 100%);
+      border: 1px solid #d4af37;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 35px rgba(212, 175, 55, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px rgba(212, 175, 55, 0.3);
+      border-color: #ffd700;
+    }
+
+    .service-image {
+      height: 250px;
+      background: linear-gradient(45deg, #1a1a1a, #000000);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      color: #d4af37;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 2px solid #d4af37;
+    }
+
+    .service-content {
+      padding: 2rem;
+    }
+
+    .service-title {
+      font-size: 1.5rem;
+      color: #d4af37;
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    .service-description {
+      color: #cccccc;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-features {
+      list-style: none;
+      padding: 0;
+      margin-bottom: 1.5rem;
+    }
+
+    .service-features li {
+      padding: 0.5rem 0;
+      color: #cccccc;
+      position: relative;
+      padding-left: 1.5rem;
+    }
+
+    .service-features li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #d4af37;
+      font-weight: bold;
+    }
+
+    .service-price {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #ffd700;
+      margin-bottom: 1rem;
+    }
+
+    .service-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #d4af37 0%, #ffd700 100%);
+      color: #000000;
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      font-weight: 600;
+      border: 2px solid transparent;
+    }
+
+    .service-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+      background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
+    }
+
+    .premium-services {
+      background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+      padding: 4rem 2rem;
+      border-radius: 20px;
+      margin: 5rem 0;
+      border: 2px solid #d4af37;
+    }
+
+    .premium-title {
+      text-align: center;
+      font-size: 2.5rem;
+      color: #d4af37;
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+
+    .premium-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .premium-item {
+      text-align: center;
+      padding: 2rem;
+      background: linear-gradient(145deg, #000000 0%, #1a1a1a 100%);
+      border: 1px solid #d4af37;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(212, 175, 55, 0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .premium-item:hover {
+      transform: translateY(-5px);
+      border-color: #ffd700;
+      box-shadow: 0 12px 30px rgba(212, 175, 55, 0.25);
+    }
+
+    .premium-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      color: #d4af37;
+    }
+
+    .premium-item h3 {
+      font-size: 1.3rem;
+      color: #d4af37;
+      margin-bottom: 1rem;
+      font-weight: 400;
+    }
+
+    .premium-item p {
+      color: #cccccc;
+      line-height: 1.5;
+    }
+
+    .availability-section {
+      background: linear-gradient(135deg, #1a1a1a 0%, #000000 100%);
+      color: #d4af37;
+      padding: 4rem 2rem;
+      border-radius: 20px;
+      text-align: center;
+      margin: 5rem 0;
+      border: 2px solid #d4af37;
+    }
+
+    .availability-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 300;
+      color: #d4af37;
+    }
+
+    .availability-section p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+      color: #cccccc;
+    }
+
+    .contact-button {
+      display: inline-block;
+      background: linear-gradient(135deg, #d4af37 0%, #ffd700 100%);
+      color: #000000;
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 2px solid transparent;
+    }
+
+    .contact-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+      background: linear-gradient(135deg, #ffd700 0%, #d4af37 100%);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .services-container {
+        padding: 2rem 1rem;
+      }
+
+      .services-hero h1 {
+        font-size: 2rem;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .premium-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .availability-section {
+        padding: 2rem 1rem;
+      }
+    }
+
+    /* Animation for service cards */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .service-card {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .service-card:nth-child(2) { animation-delay: 0.1s; }
+    .service-card:nth-child(3) { animation-delay: 0.2s; }
+    .service-card:nth-child(4) { animation-delay: 0.3s; }
+    .service-card:nth-child(5) { animation-delay: 0.4s; }
+    .service-card:nth-child(6) { animation-delay: 0.5s; }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav>
+      <div class="nav__bar">
+        <div class="logo">
+          <a href="#"><img src="/Images/kings logo.png" alt="logo" /></a>
+        </div>
+        <div class="nav__menu__btn" id="menu-btn">
+          <i class="ri-menu-line"></i>
+        </div>
+      </div>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="rooms.html" class="active">Rooms</a></li>
+        <li><a href="explore.html">Explore</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="services-container">
+    <!-- Hero Section -->
+    <section class="services-hero">
+      <div class="services-hero-content">
+        <h1>Luxury Services & Amenities</h1>
+        <p>Experience unparalleled luxury with our comprehensive range of world-class services designed to make your stay truly unforgettable</p>
+      </div>
+    </section>
+
+    <!-- Main Services Grid -->
+    <section class="services-grid">
+      <!-- Accommodation Services -->
+      <div class="service-card">
+        <div class="service-image">🏨</div>
+        <div class="service-content">
+          <h2 class="service-title">Luxury Accommodations</h2>
+          <p class="service-description">Indulge in our premium suites and rooms, each meticulously designed with elegant furnishings, modern amenities, and breathtaking views.</p>
+          <ul class="service-features">
+            <li>Ocean view and garden view rooms</li>
+            <li>24/7 room service</li>
+            <li>Premium bedding and linens</li>
+            <li>Private balconies</li>
+            <li>Complimentary Wi-Fi</li>
+          </ul>
+          <div class="service-price">Starting from $299/night</div>
+          <a href="contact.html" class="service-button">Book Now</a>
+        </div>
+      </div>
+
+      <!-- Dining Services -->
+      <div class="service-card">
+        <div class="service-image">🍽️</div>
+        <div class="service-content">
+          <h2 class="service-title">Fine Dining Experience</h2>
+          <p class="service-description">Savor exquisite cuisine at our award-winning restaurants, featuring fresh local ingredients and international flavors.</p>
+          <ul class="service-features">
+            <li>3 signature restaurants</li>
+            <li>Beachside dining</li>
+            <li>Private chef services</li>
+            <li>Wine cellar tours</li>
+            <li>Cooking classes</li>
+          </ul>
+          <div class="service-price">À la carte & packages available</div>
+          <a href="contact.html" class="service-button">Reserve Table</a>
+        </div>
+      </div>
+
+      <!-- Spa & Wellness -->
+      <div class="service-card">
+        <div class="service-image">🧘‍♀️</div>
+        <div class="service-content">
+          <h2 class="service-title">Spa & Wellness Center</h2>
+          <p class="service-description">Rejuvenate your mind, body, and soul at our world-class spa offering traditional and modern wellness treatments.</p>
+          <ul class="service-features">
+            <li>Full-service spa treatments</li>
+            <li>Yoga and meditation sessions</li>
+            <li>Fitness center access</li>
+            <li>Couples massage suites</li>
+            <li>Wellness consultations</li>
+          </ul>
+          <div class="service-price">Treatments from $89</div>
+          <a href="contact.html" class="service-button">Book Treatment</a>
+        </div>
+      </div>
+
+      <!-- Recreation Activities -->
+      <div class="service-card">
+        <div class="service-image">🏊‍♂️</div>
+        <div class="service-content">
+          <h2 class="service-title">Recreation & Activities</h2>
+          <p class="service-description">Enjoy endless entertainment with our diverse range of recreational activities and water sports.</p>
+          <ul class="service-features">
+            <li>Infinity pool and pool bar</li>
+            <li>Water sports equipment</li>
+            <li>Tennis and beach volleyball</li>
+            <li>Guided nature tours</li>
+            <li>Entertainment programs</li>
+          </ul>
+          <div class="service-price">Many activities included</div>
+          <a href="contact.html" class="service-button">Learn More</a>
+        </div>
+      </div>
+
+      <!-- Event Services -->
+      <div class="service-card">
+        <div class="service-image">🎉</div>
+        <div class="service-content">
+          <h2 class="service-title">Events & Celebrations</h2>
+          <p class="service-description">Host unforgettable weddings, corporate events, and celebrations with our professional event planning services.</p>
+          <ul class="service-features">
+            <li>Wedding planning services</li>
+            <li>Corporate meeting facilities</li>
+            <li>Banquet halls and outdoor venues</li>
+            <li>Audio/visual equipment</li>
+            <li>Catering services</li>
+          </ul>
+          <div class="service-price">Custom packages available</div>
+          <a href="contact.html" class="service-button">Plan Event</a>
+        </div>
+      </div>
+
+      <!-- Concierge Services -->
+      <div class="service-card">
+        <div class="service-image">🛎️</div>
+        <div class="service-content">
+          <h2 class="service-title">Concierge Services</h2>
+          <p class="service-description">Our dedicated concierge team ensures every aspect of your stay is perfectly tailored to your preferences.</p>
+          <ul class="service-features">
+            <li>24/7 concierge assistance</li>
+            <li>Local tour arrangements</li>
+            <li>Transportation services</li>
+            <li>Reservation assistance</li>
+            <li>Personal shopping services</li>
+          </ul>
+          <div class="service-price">Complimentary for guests</div>
+          <a href="contact.html" class="service-button">Contact Concierge</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Premium Services Section -->
+    <section class="premium-services">
+      <h2 class="premium-title">Premium Amenities</h2>
+      <div class="premium-grid">
+        <div class="premium-item">
+          <div class="premium-icon">🚁</div>
+          <h3>Helicopter Tours</h3>
+          <p>Experience breathtaking aerial views of the coastline with our exclusive helicopter tour packages.</p>
+        </div>
+        <div class="premium-item">
+          <div class="premium-icon">🛥️</div>
+          <h3>Private Yacht Charters</h3>
+          <p>Explore pristine waters aboard our luxury yachts with personalized itineraries and crew service.</p>
+        </div>
+        <div class="premium-item">
+          <div class="premium-icon">🏌️‍♂️</div>
+          <h3>Golf Course Access</h3>
+          <p>Play on championship golf courses with stunning ocean views and professional instruction available.</p>
+        </div>
+        <div class="premium-item">
+          <div class="premium-icon">🎭</div>
+          <h3>Cultural Experiences</h3>
+          <p>Immerse yourself in local culture through exclusive tours, art workshops, and cultural performances.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Availability Section -->
+    <section class="availability-section">
+      <h2>Ready to Experience Luxury?</h2>
+      <p>Our services are available year-round with seasonal packages and special offers. Contact us to customize your perfect getaway.</p>
+      <a href="contact.html" class="contact-button">Check Availability</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Kings Resort. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Mobile menu functionality
+    const menuBtn = document.getElementById('menu-btn');
+    const navLinks = document.getElementById('nav-links');
+    
+    if (menuBtn && navLinks) {
+      menuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+      });
+    }
+
+    // Smooth scroll for service buttons
+    document.querySelectorAll('.service-button, .contact-button').forEach(button => {
+      button.addEventListener('click', function(e) {
+        // Add a subtle click animation
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 150);
+      });
+    });
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running';
+        }
+      });
+    }, observerOptions);
+
+    // Observe all service cards
+    document.querySelectorAll('.service-card').forEach(card => {
+      card.style.animationPlayState = 'paused';
+      observer.observe(card);
+    });
+  </script>
+</body>
+</html>
