@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Panel | King Resort</title>
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f8f9fa;
+      color: #333;
+    }
+
+    header {
+      background-color: #222;
+      color: gold;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .admin-container {
+      padding: 2rem;
+    }
+
+    .bookings-table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .bookings-table th,
+    .bookings-table td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .bookings-table th {
+      background-color: #ffd700;
+      color: #000;
+    }
+
+    .bookings-table tbody tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .badge {
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      background-color: #222;
+      color: #ffd700;
+      font-size: 0.8rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #222;
+      color: #fff;
+      margin-top: auto;
+    }
+    html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+}
+
+body {
+  flex: 1;
+}
+
+.admin-container {
+  flex: 1;
+  padding: 2rem;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  background: #222;
+  color: #fff;
+  margin-top: auto;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1><i class="ri-dashboard-line"></i> King Resort Admin Panel</h1>
+    <span class="badge">Logged in as Admin</span>
+  </header>
+
+  <div class="admin-container">
+    <h2>Recent Bookings</h2>
+    <table class="bookings-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Room Type</th>
+          <th>Guests</th>
+          <th>Check-in</th>
+          <th>Check-out</th>
+          <th>Booked At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Booking rows will be rendered dynamically -->
+        <% bookings.forEach(booking => { %>
+          <tr>
+            <td><%= booking.name %></td>
+            <td><%= booking.email %></td>
+            <td><%= booking.room_type %></td>
+            <td><%= booking.guests %></td>
+            <td><%= booking.check_in %></td>
+            <td><%= booking.check_out %></td>
+            <td><%= booking.created_at %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+  <footer>
+    &copy; 2025 King Resort | Admin Portal
+  </footer>
+</body>
+</html>

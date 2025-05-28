@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css" media="(prefers-color-scheme: dark)" />
+  <link rel="stylesheet" href="/style.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <title>King Resort Online booking system</title>
+</head>
+<body>
+  <header class="header" id="headerHome">
+    <button id="dark-mode-toggle" class="btn nav__btn" style="margin-left: auto;">🌙 Dark Mode</button>
+    <nav>
+      <div class="nav__bar">
+        <div class="logo">
+          <a href="#"><img src="/Images/kings logo.png" alt="logo" /></a>
+        </div>
+        <div class="nav__menu__btn" id="menu-btn">
+          <i class="ri-menu-line"></i>
+        </div>
+      </div>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="rooms.html" class="active">Rooms</a></li>
+        <li><a href="explore.html">Explore</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+    <div class="section__container header__container" id="home">
+      <p>Simple - Unique - Friendly</p>
+      <h1>Make Yourself At Home<br />In Our <span>Hotel</span>.</h1>
+    </div>
+  </header>
+
+  <section class="section__container booking__container">
+    <form class="booking__form">
+      <div class="input__group">
+        <span><i class="ri-user-fill"></i></span>
+        <div>
+          <label for="name">NAME</label>
+          <input type="text" name="name" placeholder="Your Name" required />
+        </div>
+      </div>
+      <div class="input__group">
+        <span><i class="ri-mail-fill"></i></span>
+        <div>
+          <label for="email">EMAIL</label>
+          <input type="email" name="email" placeholder="Your Email" required />
+        </div>
+      </div>
+      <div class="input__group">
+        <span><i class="ri-calendar-2-fill"></i></span>
+        <div>
+          <label for="check_in">CHECK-IN</label>
+          <input type="text" id="check_in" name="check_in" required />
+        </div>
+      </div>
+      <div class="input__group">
+        <span><i class="ri-calendar-2-fill"></i></span>
+        <div>
+          <label for="check_out">CHECK-OUT</label>
+          <input type="text" id="check_out" name="check_out" required />
+        </div>
+      </div>
+      <div class="input__group">
+        <span><i class="ri-user-fill"></i></span>
+        <div>
+          <label for="guests">GUESTS</label>
+          <input type="number" name="guests" placeholder="Number of Guests" required />
+        </div>
+      </div>
+      <div class="input__group">
+        <span><i class="ri-hotel-bed-fill"></i></span>
+        <div>
+          <label for="room_type">ROOM TYPE</label>
+          <select name="room_type" required>
+            <option value="Deluxe Ocean View">Deluxe Ocean View</option>
+            <option value="Executive Cityscape Room">Executive Cityscape Room</option>
+            <option value="Family Garden Retreat">Family Garden Retreat</option>
+          </select>
+        </div>
+      </div>
+      <div class="input__group input__btn">
+        <button type="submit" class="btn">Book Now</button>
+      </div>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Kings Resort. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const checkIn = document.getElementById("check_in");
+      const checkOut = document.getElementById("check_out");
+      const form = document.querySelector(".booking__form");
+      const toggleBtn = document.getElementById("dark-mode-toggle");
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+      toggleBtn?.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+        const isDark = document.body.classList.contains("dark-mode");
+        toggleBtn.textContent = isDark ? "☀️ Light Mode" : "🌙 Dark Mode";
+        updateFlatpickrTheme(isDark);
+      });
+
+      function updateFlatpickrTheme(isDark) {
+        document.querySelectorAll("link[rel='stylesheet']").forEach(link => {
+          if (link.href.includes("flatpickr.min.css")) link.disabled = isDark;
+          if (link.href.includes("themes/dark.css")) link.disabled = !isDark;
+        });
+      }
+
+      if (isMobile) {
+        checkIn.type = "date";
+        checkOut.type = "date";
+        const today = new Date().toISOString().split("T")[0];
+        checkIn.min = today;
+        checkOut.min = new Date(Date.now() + 86400000).toISOString().split("T")[0];
+        checkIn.addEventListener("change", () => {
+          checkOut.min = checkIn.value;
+        });
+      } else {
+        const checkOutPicker = flatpickr(checkOut, {
+          altInput: true,
+          altFormat: "F j, Y",
+          dateFormat: "Y-m-d",
+          minDate: new Date().fp_incr(1),
+        });
+
+        flatpickr(checkIn, {
+          altInput: true,
+          altFormat: "F j, Y",
+          dateFormat: "Y-m-d",
+          minDate: "today",
+          onChange: function (selectedDates, dateStr) {
+            checkOutPicker.set("minDate", dateStr);
+          },
+        });
+      }
+
+      async function isRoomAvailable(checkIn, checkOut, roomType) {
+        const res = await fetch("/api/check-availability", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ check_in: checkIn, check_out: checkOut, room_type: roomType }),
+        });
+
+        const result = await res.json();
+        return result.available;
+      }
+
+      form?.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        const available = await isRoomAvailable(data.check_in, data.check_out, data.room_type);
+        if (!available) {
+          alert("❌ Sorry, that room is already booked for your selected dates.");
+          return;
+        }
+
+        await fetch("/api/book", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+
+        form.style.transition = "opacity 0.6s ease";
+        form.style.opacity = "0";
+
+        setTimeout(() => {
+          form.innerHTML = `
+            <div class="confirmation-message">
+              <h2>✔ Booking Confirmed</h2>
+              <p>We'll be expecting you! Check your email for confirmation.</p>
+            </div>`;
+          form.style.opacity = "1";
+          form.classList.add("slide-bounce-in");
+
+          setTimeout(() => window.location.href = "/", 5000);
+        }, 600);
+      });
+    });
+  </script>
+</body>
+</html>

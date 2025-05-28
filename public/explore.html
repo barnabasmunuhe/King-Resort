@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.0.0/fonts/remixicon.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css" media="(prefers-color-scheme: dark)" />
+  <link rel="stylesheet" href="/style.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <title>King Resort Explore Section</title>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <nav>
+      <div class="nav__bar">
+        <div class="logo">
+          <a href="#"><img src="/Images/kings logo.png" alt="logo" /></a>
+        </div>
+        <div class="nav__menu__btn" id="menu-btn">
+          <i class="ri-menu-line"></i>
+        </div>
+      </div>
+      <ul class="nav__links" id="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="explore.html">Explore</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- EXPLORE SECTION -->
+  <main>
+    <section class="explore" id="explore">
+      <p class="section__subheader">EXPLORE</p>
+      <h2 class="section__header">What's New Today.</h2>
+      <div class="explore__content">
+  <p class="section__description">20th JULY 2025</p>
+  <h4>A New Menu Is Available In Our Resort.</h4>
+  <!-- <a href="#new-menu" class="btn">Continue</a> -->
+</div>
+
+    <section class="section__container menu__container" id="new-menu">
+  <p class="section__subheader">OUR NEW MENU</p>
+  <h2 class="section__header">Taste the Fresh Flavors of 2025</h2>
+  <div class="menu__grid">
+    <div class="menu__card">
+      <h4>🥗 Tropical Garden Salad</h4>
+      <p>Fresh greens, mango, avocado, and a light passionfruit vinaigrette.</p>
+      <span>$12.99</span>
+    </div>
+    <div class="menu__card">
+      <h4>🍤 Coastal Prawn Delight</h4>
+      <p>Grilled prawns with coconut curry sauce, served with jasmine rice.</p>
+      <span>$18.50</span>
+    </div>
+    <div class="menu__card">
+      <h4>🥘 Heritage Beef Stew</h4>
+      <p>Slow-cooked with root vegetables and aromatic herbs. A timeless classic.</p>
+      <span>$16.75</span>
+    </div>
+    <div class="menu__card">
+      <h4>🍰 Sunset Cheesecake</h4>
+      <p>A rich vanilla cheesecake topped with seasonal berries and mint.</p>
+      <span>$9.00</span>
+    </div>
+  </div>
+</section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2025 Kings Resort. All rights reserved.</p>
+  </footer>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.getElementById("dark-mode-toggle");
+    toggleBtn?.addEventListener("click", () => {
+      document.body.classList.toggle("dark-mode");
+      toggleBtn.textContent = document.body.classList.contains("dark-mode")
+        ? "☀️ Light Mode"
+        : "🌙 Dark Mode";
+    });
+  });
+</script>
+
+
+</body>
+</html>
