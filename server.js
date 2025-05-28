@@ -13,7 +13,6 @@ app.use(express.json());
 // app.use(express.static(path.join(__dirname, 'public')));
 app.set('view engine', 'ejs');
 
-// Routes
 // Room inventory (you can store this in a DB later)
 const ROOM_LIMITS = {
   "Deluxe Ocean View": 5,
@@ -21,7 +20,28 @@ const ROOM_LIMITS = {
   "Family Garden Retreat": 4,
 };
 
-// app.use('/api', bookingRoutes);
+// Health check route for deployment
+app.get('/health', (req, res) => {
+  res.status(200).json({ 
+    status: 'OK', 
+    message: 'King Resort API is running!',
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Root route - FIXED: Now returns a proper response
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'Welcome to King Resort API',
+    endpoints: {
+      health: '/health',
+      admin: '/admin',
+      book: 'POST /api/book',
+      checkAvailability: 'POST /api/check-availability',
+      contact: 'POST /api/contact'
+    }
+  });
+});
 
 // Admin Panel (basic HTTP auth)
 app.use('/admin', basicAuth({
@@ -30,21 +50,16 @@ app.use('/admin', basicAuth({
 }));
 
 app.get('/admin', (req, res) => {
-  const bookings = db.prepare('SELECT * FROM bookings ORDER BY created_at DESC').all();
-  res.render('admin', { bookings });
+  try {
+    const bookings = db.prepare('SELECT * FROM bookings ORDER BY created_at DESC').all();
+    res.render('admin', { bookings });
+  } catch (error) {
+    console.error('Database error:', error);
+    res.status(500).json({ error: 'Database connection failed' });
+  }
 });
 
-// Root redirect to frontend (optional, static index.html page)
-app.get('/', (req, res) => {
-  // res.sendFile(path.join(__dirname, 'public/index.html'));
-});
-
-// Start the server
-app.listen(PORT, () => {
-  console.log(`🚀 Server running at http://localhost:${PORT}`);
-  console.log(`📨 Booking emails will be sent to ${process.env.EMAIL_USER}`);
-});
-
+// API Routes
 app.post("/api/check-availability", (req, res) => {
   const { check_in, check_out, room_type } = req.body;
 
@@ -52,21 +67,24 @@ app.post("/api/check-availability", (req, res) => {
     return res.status(400).json({ error: "Missing required fields" });
   }
 
-  const bookings = db.prepare(`
-    SELECT * FROM bookings 
-    WHERE room_type = ? 
-      AND (
-        (? < check_out AND ? > check_in)
-      )
-  `).all(room_type, check_in, check_out);
+  try {
+    const bookings = db.prepare(`
+      SELECT * FROM bookings 
+      WHERE room_type = ? 
+        AND (
+          (? < check_out AND ? > check_in)
+        )
+    `).all(room_type, check_in, check_out);
 
-  const available = bookings.length === 0;
-
-  res.json({ available });
+    const available = bookings.length === 0;
+    res.json({ available });
+  } catch (error) {
+    console.error('Database error:', error);
+    res.status(500).json({ error: 'Database query failed' });
+  }
 });
 
-
-//Booking a room
+// Booking a room
 app.post("/api/book", (req, res) => {
   const { name, email, check_in, check_out, guests, room_type } = req.body;
 
@@ -74,28 +92,33 @@ app.post("/api/book", (req, res) => {
     return res.status(400).json({ error: "Missing required fields" });
   }
 
-  // Get current bookings for the selected dates and room type
-  const count = db.prepare(`
-    SELECT COUNT(*) AS total FROM bookings
-    WHERE room_type = ? AND (? < check_out AND ? > check_in)
-  `).get(room_type, check_in, check_out).total;
+  try {
+    // Get current bookings for the selected dates and room type
+    const count = db.prepare(`
+      SELECT COUNT(*) AS total FROM bookings
+      WHERE room_type = ? AND (? < check_out AND ? > check_in)
+    `).get(room_type, check_in, check_out).total;
 
+    // Compare against the limit
+    const maxRooms = ROOM_LIMITS[room_type] || 0;
 
-  // Compare against the limit
-  const maxRooms = ROOM_LIMITS[room_type] || 0;
+    if (count >= maxRooms) {
+      return res.status(409).json({ error: "Room not available for selected dates" });
+    }
 
-  if (count >= maxRooms) {
-    return res.status(409).json({ error: "Room not available for selected dates" });
+    // Insert booking
+    db.prepare(`
+      INSERT INTO bookings (name, email, check_in, check_out, guests, room_type, created_at)
+      VALUES (?, ?, ?, ?, ?, ?, datetime('now'))
+    `).run(name, email, check_in, check_out, guests, room_type);
+
+    res.json({ success: true });
+  } catch (error) {
+    console.error('Booking error:', error);
+    res.status(500).json({ error: 'Failed to create booking' });
   }
-
-  // Insert booking
-  db.prepare(`
-    INSERT INTO bookings (name, email, check_in, check_out, guests, room_type, created_at)
-    VALUES (?, ?, ?, ?, ?, ?, datetime('now'))
-  `).run(name, email, check_in, check_out, guests, room_type);
-
-  res.json({ success: true });
 });
+
 // Handle contact form submissions
 app.post("/api/contact", (req, res) => {
   const { name, email, subject, message } = req.body;
@@ -117,5 +140,9 @@ app.post("/api/contact", (req, res) => {
   }
 });
 
-
-
+// FIXED: Proper host binding for cloud deployment
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Server running at http://localhost:${PORT}`);
+  console.log(`📨 Booking emails will be sent to ${process.env.EMAIL_USER}`);
+  console.log(`🏥 Health check available at /health`);
+});
