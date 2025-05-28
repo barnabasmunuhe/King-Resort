@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const path = require('path');
 const db = require('./db');
-const bookingRoutes = require('./routes/bookings');
 const basicAuth = require('express-basic-auth');
 
 const app = express();
@@ -22,7 +21,7 @@ const ROOM_LIMITS = {
   "Family Garden Retreat": 4,
 };
 
-app.use('/api', bookingRoutes);
+// app.use('/api', bookingRoutes);
 
 // Admin Panel (basic HTTP auth)
 app.use('/admin', basicAuth({
