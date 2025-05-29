@@ -67,7 +67,7 @@ app.use('/admin', basicAuth({
   challenge: true,
 }));
 
-app.get('/admin', (req, res) => {
+app.get('/admin', async (req, res) => {
   if (!db) {
     return res.status(500).json({ 
       error: 'Database not available',
@@ -76,7 +76,7 @@ app.get('/admin', (req, res) => {
   }
 
   try {
-    const bookings = db.prepare('SELECT * FROM bookings ORDER BY created_at DESC').all();
+    const bookings = await db.getAllBookings();
     res.render('admin', { bookings });
   } catch (error) {
     console.error('Database query error:', error);
@@ -88,7 +88,7 @@ app.get('/admin', (req, res) => {
 });
 
 // API Routes
-app.post("/api/check-availability", (req, res) => {
+app.post("/api/check-availability", async (req, res) => {
   const { check_in, check_out, room_type } = req.body;
 
   if (!check_in || !check_out || !room_type) {
@@ -103,14 +103,7 @@ app.post("/api/check-availability", (req, res) => {
   }
 
   try {
-    const bookings = db.prepare(`
-      SELECT * FROM bookings 
-      WHERE room_type = ? 
-        AND (
-          (? < check_out AND ? > check_in)
-        )
-    `).all(room_type, check_in, check_out);
-
+    const bookings = await db.getBookingsInDateRange(check_in, check_out, room_type);
     const available = bookings.length === 0;
     res.json({ available });
   } catch (error) {
@@ -122,7 +115,7 @@ app.post("/api/check-availability", (req, res) => {
   }
 });
 
-app.post("/api/book", (req, res) => {
+app.post("/api/book", async (req, res) => {
   const { name, email, check_in, check_out, guests, room_type } = req.body;
 
   if (!name || !email || !check_in || !check_out || !guests || !room_type) {
@@ -138,10 +131,8 @@ app.post("/api/book", (req, res) => {
 
   try {
     // Get current bookings for the selected dates and room type
-    const count = db.prepare(`
-      SELECT COUNT(*) AS total FROM bookings
-      WHERE room_type = ? AND (? < check_out AND ? > check_in)
-    `).get(room_type, check_in, check_out).total;
+    const existingBookings = await db.getBookingsInDateRange(check_in, check_out, room_type);
+    const count = existingBookings.length;
 
     // Compare against the limit
     const maxRooms = ROOM_LIMITS[room_type] || 0;
@@ -151,12 +142,8 @@ app.post("/api/book", (req, res) => {
     }
 
     // Insert booking
-    db.prepare(`
-      INSERT INTO bookings (name, email, check_in, check_out, guests, room_type, created_at)
-      VALUES (?, ?, ?, ?, ?, ?, datetime('now'))
-    `).run(name, email, check_in, check_out, guests, room_type);
-
-    res.json({ success: true });
+    const booking = await db.insertBooking(name, email, check_in, check_out, guests, room_type);
+    res.json({ success: true, booking });
   } catch (error) {
     console.error('Booking error:', error);
     res.status(500).json({ 
@@ -166,7 +153,7 @@ app.post("/api/book", (req, res) => {
   }
 });
 
-app.post("/api/contact", (req, res) => {
+app.post("/api/contact", async (req, res) => {
   const { name, email, subject, message } = req.body;
 
   if (!name || !email || !subject || !message) {
@@ -182,12 +169,8 @@ app.post("/api/contact", (req, res) => {
   }
 
   try {
-    db.prepare(`
-      INSERT INTO contacts (name, email, subject, message, created_at)
-      VALUES (?, ?, ?, ?, datetime('now'))
-    `).run(name, email, subject, message);
-
-    res.json({ success: true });
+    const contact = await db.insertContact(name, email, subject, message);
+    res.json({ success: true, contact });
   } catch (err) {
     console.error("❌ Failed to save contact:", err);
     res.status(500).json({ 
@@ -196,6 +179,15 @@ app.post("/api/contact", (req, res) => {
       details: err.message 
     });
   }
+});
+
+// Graceful shutdown
+process.on('SIGTERM', async () => {
+  console.log('🔄 Shutting down gracefully...');
+  if (db && db.close) {
+    await db.close();
+  }
+  process.exit(0);
 });
 
 // Start server
