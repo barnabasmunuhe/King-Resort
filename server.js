@@ -27,6 +27,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.set('view engine', 'ejs');
 
+// Serve static files (CSS, JS, images) from public directory
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Room inventory
 const ROOM_LIMITS = {
   "Deluxe Ocean View": 5,
@@ -45,8 +48,13 @@ app.get('/health', (req, res) => {
   });
 });
 
-// Root route
+// Root route - serve the main website
 app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+// API info route (moved to /api)
+app.get('/api', (req, res) => {
   res.json({ 
     message: 'Welcome to King Resort API',
     database: db ? 'Connected' : 'Failed',
