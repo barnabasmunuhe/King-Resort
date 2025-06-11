@@ -249,7 +249,7 @@ nav {
 }
 
 /* Room Cards */
-.room__grid {
+/* .room__grid {
   margin-top: 4rem;
   display: grid;
   gap: 1rem;
@@ -327,7 +327,7 @@ nav {
 .room__card h5 span {
   font-size: 1.1rem;
   color: var(--text-dark);
-}
+} */
 
 /* Service Section */
 .service {

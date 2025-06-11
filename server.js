@@ -35,7 +35,7 @@ app.get('/admin', (req, res) => {
   res.render('admin', { bookings });
 });
 
-// Root redirect to frontend (optional, static index.html page)
+// Root redirect to frontend (static index.html page)
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public/index.html'));
 });
